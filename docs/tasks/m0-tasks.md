@@ -3,8 +3,8 @@
 **Milestone goal:** A C++20 project that compiles, links and runs; a CI
 pipeline that builds and tests on every push.
 
-**Demo:** `cmake -B build && cmake --build build && ./build/src/mai-ide` prints
-`"Mai IDE"`. CI badge is green.
+**Demo:** `cmake -B build && cmake --build build && ./build/src/mai-ide` logs
+`"Mai IDE"` to the console. CI badge is green.
 
 **Prerequisites:** none (this is the first milestone).
 
@@ -51,7 +51,10 @@ builds the `mai-ide` executable.
 - Compiler warnings enabled: `-Wall -Wextra -Wpedantic` (GCC/Clang) or `/W4`
   (MSVC).
 - `CMAKE_EXPORT_COMPILE_COMMANDS ON` for tooling.
-- `src/CMakeLists.txt` defines an executable target `mai-ide` from `main.cpp`.
+- spdlog is declared via `FetchContent_Declare` (repo:
+  `https://github.com/gabime/spdlog.git`, tag: `v1.15.0`).
+- `src/CMakeLists.txt` defines an executable target `mai-ide` from `main.cpp`
+  and links it to `spdlog::spdlog`.
 - An option `MAI_BUILD_TESTS` (default `ON`) gates `add_subdirectory(tests)`.
 - `enable_testing()` is called when tests are enabled.
 
@@ -71,9 +74,11 @@ builds the `mai-ide` executable.
 Create the minimal entry point for the Mai IDE application.
 
 **Acceptance criteria:**
-- Prints exactly `Mai IDE` followed by a newline to stdout.
+- Logs exactly `Mai IDE` to the console using `spdlog::info`.
 - Returns `EXIT_SUCCESS` (0).
-- Uses `<iostream>` and `<cstdlib>`.
+- Uses `<spdlog/spdlog.h>` and `<cstdlib>`.
+- Does **not** use `<iostream>`, `std::cout`, `printf`, or any other standard
+  I/O for output (see contributing.md — Logging).
 - No other logic.
 
 **Suggested tests:**
@@ -208,7 +213,7 @@ Verify the full M0 deliverable works end-to-end.
 **Acceptance criteria:**
 - Fresh clone of the branch → `cmake -B build && cmake --build build` succeeds
   with zero errors and zero warnings.
-- `./build/src/mai-ide` prints `Mai IDE` and exits with code 0.
+- `./build/src/mai-ide` logs `Mai IDE` to the console and exits with code 0.
 - `ctest --test-dir build` reports all tests passed.
 - CI workflow runs green on the PR.
 - `.gitignore` correctly excludes build artefacts.

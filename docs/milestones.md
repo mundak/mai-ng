@@ -17,11 +17,11 @@ builds on every push.
 | Deliverable | Detail |
 |-------------|--------|
 | `CMakeLists.txt` | Minimal CMake project (C++20) |
-| `src/main.cpp` | Prints `"Mai IDE"` and exits |
+| `src/main.cpp` | Logs `"Mai IDE"` (via spdlog) and exits |
 | GitHub Actions workflow | Builds the project on Ubuntu; reports pass/fail |
 
 **Demo:** clone → `cmake -B build && cmake --build build` → run the binary →
-see `"Mai IDE"` printed. CI badge is green.
+see `"Mai IDE"` logged to the console. CI badge is green.
 
 ---
 
