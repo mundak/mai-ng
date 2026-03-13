@@ -33,7 +33,7 @@ Each box above represents a major module described in the sections that follow.
 
 ### 3.1 Application Shell
 
-**Responsibility:** bootstrap the application, create the OS window, initialise the ImGui context and rendering backend, and drive the main loop.
+**Responsibility:** bootstrap the application, create the OS window, initialize the Dear ImGui context and rendering backend, and drive the main loop.
 
 | Aspect | Detail |
 |--------|--------|
