@@ -494,32 +494,34 @@ workflow from typing code to debugging.
 ## Milestone Dependency Graph
 
 ```
-M0 ──► M1 ──► M2 ──► M3
-                        │
-              ┌─────────┴──────────┐
-              ▼                    ▼
-             M4 ──► M5           M24
-              │
-              ▼
-             M6 ──► M7 ──► M8
-              │
-              ▼
-             M9 ──► M10 ──► M11 ──► M12 ──► M13 ──► M14
-                                              │
-                                              ▼
-                                    M15 ──► M16 ──► M17
-                                                     │
-                                                     ▼
-                                                    M19
-              │
-              └──► M18 ──► M20 ──► M21 ──► M22
-                                            │
-                                            ▼
-                                           M23
-
-M25 depends on M14
-M26 depends on all previous milestones
+M0 ──► M1 ──► M2 ──► M3 ─────────────────────────► M24
+                       │
+                       ▼
+                      M4 ──► M5
+                       │
+                       ▼
+                      M6 ──► M7 ──► M8
+                       │
+                  ┌────┴────┐
+                  ▼         ▼
+                 M9        M18 ──► M20 ──► M21 ──► M22
+                  │                                 │
+                  ▼                                 ▼
+          M10 ──► M11                              M23
+                  │
+                  ▼
+                 M12 ──► M13 ──► M14 ──► M25
+                          │
+                          ▼
+                M15 ──► M16 ──► M17 ──► M19
 ```
+
+**Cross-branch dependencies** (not shown in the graph above):
+
+* **M5** also depends on **M3** (syntax highlighting needs both the editor and the lexer).
+* **M18** also depends on **M9** (language expansion needs a working code generator).
+* **M19** also depends on **M18** (watch/locals needs variables in the language).
+* **M26** depends on all previous milestones.
 
 > Milestones on separate branches of the graph can be worked on in parallel
 > (e.g. M24 can be developed alongside the compiler milestones).
