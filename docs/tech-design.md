@@ -105,11 +105,16 @@ The pipeline is designed to run **incrementally** on a background thread, re-com
 
 ### 3.8 Console / Output Panel
 
-**Responsibility:** display program output and build diagnostics.
+**Responsibility:** display program output, build diagnostics, and internal log messages.
 
 * Shows compiler errors and warnings produced by the compiler pipeline.
 * Streams stdout/stderr from the running program (via the Execution Engine).
+* Displays internal application log messages via a custom **spdlog** ImGui sink, providing live diagnostics within the IDE.
 * Optionally accepts stdin input to forward to the guest process.
+
+> **Note:** All internal diagnostic and status output uses spdlog (see
+> §5 Technology Choices). Standard I/O (`std::cout`, `printf`, etc.) must not be
+> used for logging anywhere in the codebase.
 
 ---
 
@@ -155,6 +160,7 @@ The pipeline is designed to run **incrementally** on a background thread, re-com
 | UI framework | Dear ImGui (docking branch) | Immediate-mode GUI, lightweight, easy panel layout |
 | Windowing | GLFW | Minimal, well-supported, pairs well with ImGui |
 | Rendering backend | OpenGL 3.3+ | Wide compatibility; can migrate to Vulkan later |
+| Logging | spdlog | Fast, header-only-capable C++ logger; supports console, file, and custom sinks (used for the IDE log panel) |
 | Emulation | QEMU (user-mode) | Mature, supports GDB stub out of the box |
 | Debugger protocol | GDB Remote Serial Protocol | Standard, well-documented, directly supported by QEMU |
 | Build system | CMake | Industry standard for C++ projects |

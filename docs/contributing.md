@@ -339,8 +339,8 @@ Preprocessor directives are **not indented**.
 
 #include <vector>
 
-#ifdef DEBUG
-#define LOG(x) std::cout << x
+#ifdef MAI_DEBUG
+#define MAI_TRACE(x) spdlog::trace(x)
 #endif
 ```
 
@@ -402,6 +402,55 @@ AI agents picking up tasks should:
 
 ---
 
+## Logging
+
+**Do not use standard I/O** (`std::cout`, `std::cerr`, `std::cin`, `printf`,
+`fprintf`, `puts`, `std::print`, or any other `<iostream>` / `<cstdio>`
+facility) for diagnostic output, status messages, or error reporting. All
+logging must go through **spdlog**.
+
+spdlog serves three purposes in this project:
+
+1. **Console output** — a console sink prints log messages to the terminal
+   during development and CI runs.
+2. **File logging** — a rotating-file sink writes log messages to text files
+   for offline analysis and bug reports.
+3. **IDE log panel** — a custom ImGui sink feeds log messages into the
+   Console / Output panel inside the IDE, so users and developers see live
+   diagnostics in the application itself.
+
+### Usage
+
+```cpp
+#include <spdlog/spdlog.h>
+
+spdlog::info("Mai IDE v{}.{}", major, minor);
+spdlog::warn("frame took {} ms", elapsed_ms);
+spdlog::error("failed to open file: {}", path);
+```
+
+### Log Levels
+
+Use log levels consistently:
+
+| Level | When to use |
+|-------|-------------|
+| `trace` | Very detailed diagnostic information (disabled in Release) |
+| `debug` | Diagnostic information useful during development |
+| `info` | Normal operational messages (startup, shutdown, milestones) |
+| `warn` | Recoverable problems that deserve attention |
+| `error` | Failures that prevent an operation from completing |
+| `critical` | Fatal errors that will cause the application to exit |
+
+### Sink Configuration
+
+Sink setup (console, file, ImGui panel) is handled centrally during
+application initialisation. Individual modules should only call the `spdlog`
+logging macros/functions — they must **never** create sinks or configure the
+global logger.
+
+---
+
 ## Dependencies
 
 * Managed via CMake `FetchContent`.
@@ -410,4 +459,5 @@ AI agents picking up tasks should:
 * Current dependencies:
   - **GLFW 3.4** — windowing / input
   - **Dear ImGui (docking branch)** — GUI framework
+  - **spdlog 1.15** — logging (console, file, and custom ImGui sinks)
   - **GoogleTest 1.14** — testing

@@ -139,7 +139,7 @@ core-profile context, and provides a clean shutdown function.
   - `void poll_events()` — wraps `glfwPollEvents`.
   - `void swap_buffers()` — wraps `glfwSwapBuffers`.
   - `void shutdown()` — destroys window, calls `glfwTerminate`.
-- GLFW error callback is set and logs to stderr.
+- GLFW error callback is set and logs errors via spdlog.
 - Default window size: 1280×720.
 - Window title: `"Mai IDE"`.
 - ESC key sets `glfwSetWindowShouldClose(window, true)`.
@@ -228,7 +228,7 @@ ImGui backend, and enters the main loop.
 **Acceptance criteria:**
 - `main()` calls `Window::init()`, `ImGuiBackend::init()`, `run()`,
   then shuts down in reverse order.
-- If `Window::init()` fails, prints an error to stderr and returns
+- If `Window::init()` fails, logs an error via spdlog and returns
   `EXIT_FAILURE`.
 - The old `"Mai IDE"` print is removed (the window title serves the same
   purpose).
