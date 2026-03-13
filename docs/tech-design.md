@@ -2,7 +2,7 @@
 
 ## 1. Vision
 
-Mai IDE is an integrated editor, compiler and debugger for the **mai** programming language (a custom language based on C). The application provides a live-compilation workflow: as the user types source code, it is compiled in the background into machine instructions and the resulting assembly is displayed in a panel next to the editor. When the user presses **Run**, the cached binary is written to disk, executed inside QEMU, and a debugger is attached—showing the current instruction and corresponding source line in real time.
+Mai IDE is an integrated editor, compiler and debugger for the **mai** programming language (a custom language that mimics C syntax but has no preprocessor). The application provides a live-compilation workflow: as the user types source code, it is compiled in the background into machine instructions and the resulting assembly is displayed in a panel next to the editor. When the user presses **Run**, the cached binary is written to disk, executed inside QEMU, and a debugger is attached—showing the current instruction and corresponding source line in real time.
 
 The entire UI is built with **Dear ImGui**, targeting a lightweight, single-window desktop application.
 
@@ -60,7 +60,7 @@ The pipeline follows classic compiler stages:
 1. **Lexer** — tokenises the source text into a stream of tokens (keywords, identifiers, literals, operators, etc.).
 2. **Parser** — consumes tokens and builds an Abstract Syntax Tree (AST). Produces diagnostics (errors/warnings) surfaced in the editor.
 3. **Semantic Analysis** — type checking, scope resolution, and other static checks performed on the AST.
-4. **Code Generator** — walks the validated AST and emits target assembly (initially targeting x86-64 or RISC-V). Produces:
+4. **Code Generator** — walks the validated AST and emits target assembly (initially targeting ARM64). Produces:
    * An assembly text listing (consumed by the Assembly View).
    * A relocatable object / flat binary (consumed by the Execution Engine).
 5. **Source Map** — maintains a bidirectional mapping between source lines/columns and generated assembly addresses. Used by both the Assembly View and the Debugger.
@@ -151,7 +151,7 @@ The pipeline is designed to run **incrementally** on a background thread, re-com
 
 | Area | Choice | Rationale |
 |------|--------|-----------|
-| Language | C++ (C++17 or later) | Performance, direct ImGui integration, low-level control for compiler work |
+| Language | C++ (C++20) | Performance, direct ImGui integration, low-level control for compiler work |
 | UI framework | Dear ImGui (docking branch) | Immediate-mode GUI, lightweight, easy panel layout |
 | Windowing | GLFW | Minimal, well-supported, pairs well with ImGui |
 | Rendering backend | OpenGL 3.3+ | Wide compatibility; can migrate to Vulkan later |
@@ -163,7 +163,7 @@ The pipeline is designed to run **incrementally** on a background thread, re-com
 
 ## 6. Open Questions
 
-* **Target architecture** — Should the first target be x86-64 (simplest for host-native debugging) or RISC-V (cleaner ISA, always requires QEMU)?
+* **Target architecture** — The initial target is ARM64. Support for additional architectures may be considered later.
 * **Incremental compilation granularity** — Function-level vs. file-level re-compilation on edits.
-* **Language specification** — The exact deviations of "mai" from C need to be documented separately.
+* **Language specification** — Mai mimics C syntax but excludes the preprocessor. The remaining deviations from C need to be documented separately.
 * **Plugin / extension model** — Decide early whether the architecture should support third-party extensions.

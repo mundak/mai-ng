@@ -16,7 +16,7 @@ builds on every push.
 
 | Deliverable | Detail |
 |-------------|--------|
-| `CMakeLists.txt` | Minimal CMake project (C++17) |
+| `CMakeLists.txt` | Minimal CMake project (C++20) |
 | `src/main.cpp` | Prints `"Mai IDE"` and exits |
 | GitHub Actions workflow | Builds the project on Ubuntu; reports pass/fail |
 
@@ -173,7 +173,7 @@ in the Console panel.
 
 | Deliverable | Detail |
 |-------------|--------|
-| Target ISA | x86-64 **or** RISC-V (decide in this milestone; see TDD §6) |
+| Target ISA | ARM64 |
 | Codegen function | `CodegenResult codegen(AST const&)` producing assembly text + binary blob |
 | Unit tests | Verify expected instruction sequences |
 
