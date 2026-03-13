@@ -1,0 +1,74 @@
+name: Agent Task
+description: A task to be picked up by an AI coding agent or human contributor.
+title: "[T<milestone>.<number>] <title>"
+labels: ["agent-task"]
+body:
+  - type: input
+    id: task-id
+    attributes:
+      label: Task ID
+      description: "The task identifier (e.g. T0.1, T1.4, T2.5)"
+      placeholder: "T0.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: milestone
+    attributes:
+      label: Milestone
+      options:
+        - "M0 — Project Skeleton & CI"
+        - "M1 — Empty Window on Screen"
+        - "M2 — Dockable Panel Layout"
+    validations:
+      required: true
+
+  - type: input
+    id: parallel-group
+    attributes:
+      label: Parallel Group
+      description: "Which parallel group this task belongs to (e.g. A, B, C)"
+      placeholder: "A"
+    validations:
+      required: true
+
+  - type: textarea
+    id: depends-on
+    attributes:
+      label: Dependencies
+      description: "List any task IDs that must be completed before this one."
+      placeholder: "T0.1, T0.2 (or 'none')"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Task Description
+      description: "Full description of what needs to be done."
+    validations:
+      required: true
+
+  - type: textarea
+    id: files
+    attributes:
+      label: Files to Create / Modify
+      description: "List the files this task should touch."
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: "Bullet list of conditions that must be met for this task to be considered done."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-tests
+    attributes:
+      label: Suggested Tests
+      description: "Tests the agent should write alongside the code."
+    validations:
+      required: false
