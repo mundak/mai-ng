@@ -24,11 +24,11 @@ complete, fill in the PR link, and record the date.
 
 | Task | Title | Group | Status | PR | Date |
 |------|-------|-------|--------|----|------|
-| T0.1 | Root CMakeLists.txt | A | `pending` | | |
-| T0.2 | src/main.cpp | A | `pending` | | |
-| T0.3 | .gitignore | A | `pending` | | |
-| T0.4 | Test infrastructure (GoogleTest + smoke test) | A | `pending` | | |
-| T0.5 | GitHub Actions CI workflow | A | `pending` | | |
+| T0.1 | Root CMakeLists.txt | A | `done` | | 2026-03-14 |
+| T0.2 | src/main.cpp | A | `done` | | 2026-03-14 |
+| T0.3 | .gitignore | A | `done` | | 2026-03-14 |
+| T0.4 | Test infrastructure (GoogleTest + smoke test) | A | `done` | | 2026-03-14 |
+| T0.5 | GitHub Actions CI workflow | A | `done` | | 2026-03-14 |
 | T0.6 | Update README.md | B | `pending` | | |
 | T0.7 | End-to-end verification | C | `pending` | | |
 
