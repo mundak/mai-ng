@@ -50,11 +50,11 @@ complete, fill in the PR link, and record the date.
 
 | Task | Title | Group | Status | PR | Date |
 |------|-------|-------|--------|----|------|
-| T2.1 | Editor panel | A | `pending` | | |
-| T2.2 | Assembly View panel | A | `pending` | | |
-| T2.3 | Console / Output panel | A | `pending` | | |
-| T2.4 | Debugger panel | A | `pending` | | |
-| T2.5 | Default dock layout | B | `pending` | | |
-| T2.6 | Wire panels into main loop | B | `pending` | | |
-| T2.7 | Tests for panels & layout | C | `pending` | | |
-| T2.8 | End-to-end verification | C | `pending` | | |
+| T2.1 | Editor panel | A | `done` | | 2026-03-14 |
+| T2.2 | Assembly View panel | A | `done` | | 2026-03-14 |
+| T2.3 | Console / Output panel | A | `done` | | 2026-03-14 |
+| T2.4 | Debugger panel | A | `done` | | 2026-03-14 |
+| T2.5 | Default dock layout | B | `done` | | 2026-03-14 |
+| T2.6 | Wire panels into main loop | B | `done` | | 2026-03-14 |
+| T2.7 | Tests for panels & layout | C | `done` | | 2026-03-14 |
+| T2.8 | End-to-end verification | C | `done` | | 2026-03-14 |

@@ -1,6 +1,10 @@
 #include "app/imgui_backend.h"
 #include "app/main_loop.h"
 #include "app/window.h"
+#include "panels/assembly_panel.h"
+#include "panels/console_panel.h"
+#include "panels/debugger_panel.h"
+#include "panels/editor_panel.h"
 
 #include <spdlog/spdlog.h>
 
@@ -18,7 +22,13 @@ int main()
   }
 
   backend.init(win.handle());
-  mai::app::run(win, backend);
+
+  mai::panels::editor_panel editor;
+  mai::panels::assembly_panel assembly;
+  mai::panels::console_panel console;
+  mai::panels::debugger_panel debugger;
+
+  mai::app::run(win, backend, editor, assembly, console, debugger);
 
   backend.shutdown();
   win.shutdown();
