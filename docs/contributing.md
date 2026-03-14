@@ -36,9 +36,14 @@ ctest --test-dir build --output-on-failure
 
 ## Post-Edit Formatting
 
-After every source file modification (`.cpp`, `.h`, `.inl`), run
-`clang-format -i <file>` on the entire modified file to ensure it conforms to
-the project's `.clang-format` configuration.
+After every source file modification (`.cpp`, `.h`, `.inl`):
+
+1. **Run the `coding-style` agent** (`.github/agents/coding-style.md`) on all
+   changed files to catch violations that clang-format cannot detect (naming,
+   type usage, `auto` misuse, logging, etc.). Fix every reported issue before
+   proceeding.
+2. Run `clang-format -i <file>` on the entire modified file to ensure it
+   conforms to the project's `.clang-format` configuration.
 
 ---
 
@@ -398,11 +403,15 @@ AI agents picking up tasks should:
 5. Write (or update) the suggested tests.
 6. Run `cmake -B build && cmake --build build && ctest --test-dir build`
    locally.
-7. **Update `docs/tasks/progress.md`** — mark the task as `done` and add the
+7. **Run the `coding-style` agent** (`.github/agents/coding-style.md`) on all
+   changed or created source files. Fix every reported violation before
+   proceeding.
+8. **Run `clang-format -i`** on every modified source file.
+9. **Update `docs/tasks/progress.md`** — mark the task as `done` and add the
    completion date. Commit this change with the task deliverables.
-8. Commit with a descriptive message referencing the task ID.
-9. Open a PR targeting the milestone integration branch.
-10. **Add the PR number** to your row in `docs/tasks/progress.md` and push
+10. Commit with a descriptive message referencing the task ID.
+11. Open a PR targeting the milestone integration branch.
+12. **Add the PR number** to your row in `docs/tasks/progress.md` and push
     the update.
 
 ---
