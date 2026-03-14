@@ -50,7 +50,7 @@ complete, fill in the PR link, and record the date.
 
 | Task | Title | Group | Status | PR | Date |
 |------|-------|-------|--------|----|------|
-| T2.1 | Editor panel | A | `pending` | | |
+| T2.1 | Editor panel | A | `done` | | 2026-03-14 |
 | T2.2 | Assembly View panel | A | `pending` | | |
 | T2.3 | Console / Output panel | A | `pending` | | |
 | T2.4 | Debugger panel | A | `pending` | | |
