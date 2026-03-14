@@ -3,6 +3,7 @@ add_executable(mai-ide
   app/window.cpp
   app/imgui_backend.cpp
   app/main_loop.cpp
+  app/layout.cpp
   panels/editor_panel.cpp
   panels/assembly_panel.cpp
   panels/console_panel.cpp

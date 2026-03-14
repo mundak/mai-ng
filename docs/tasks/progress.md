@@ -54,7 +54,7 @@ complete, fill in the PR link, and record the date.
 | T2.2 | Assembly View panel | A | `done` | | 2026-03-14 |
 | T2.3 | Console / Output panel | A | `done` | | 2026-03-14 |
 | T2.4 | Debugger panel | A | `done` | | 2026-03-14 |
-| T2.5 | Default dock layout | B | `pending` | | |
+| T2.5 | Default dock layout | B | `done` | | 2026-03-14 |
 | T2.6 | Wire panels into main loop | B | `pending` | | |
 | T2.7 | Tests for panels & layout | C | `pending` | | |
 | T2.8 | End-to-end verification | C | `pending` | | |
