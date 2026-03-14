@@ -378,8 +378,9 @@ ci: install Mesa packages for headless GL
 
 ## Pull Requests
 
-* **One task per PR.** Reference the task ID (e.g. `T0.1`, `T1.4`) in the
-  PR title.
+* **One task per PR.** Each task implementation must be exactly one pull
+  request. Never combine multiple tasks in a single PR. Reference the
+  task ID (e.g. `T0.1`, `T1.4`) in the PR title.
 * Ensure CI is green before requesting review.
 * Keep PRs small and focused.
 
