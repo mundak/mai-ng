@@ -56,7 +56,8 @@ An agent should:
 3. Implement the deliverables.
 4. Write the suggested tests (at minimum).
 5. Ensure the full project builds and all tests pass (`cmake -B build && cmake --build build && ctest --test-dir build`).
-6. Open a PR referencing the task ID (e.g. `T0.1`).
+6. **Update [progress.md](progress.md)** — mark the task as `done`, add the PR number and date (see [Progress Tracking](#progress-tracking) below).
+7. Open a PR referencing the task ID (e.g. `T0.1`).
 
 ---
 
@@ -97,6 +98,25 @@ Key rules:
 
 ---
 
+## Progress Tracking
+
+A shared **[progress.md](progress.md)** file records the status of every task.
+After completing a task, the agent (or contributor) **must** update this file as
+part of the same PR that delivers the task:
+
+1. Open `docs/tasks/progress.md`.
+2. Find the row for the completed task.
+3. Change the **Status** column from `pending` to `done`.
+4. Enter the **PR** number (e.g. `#12`).
+5. Enter the **Date** in `YYYY-MM-DD` format.
+6. Commit the change together with the task deliverables.
+
+This keeps a single source of truth that any agent or human can check before
+starting a new task — especially useful for verifying that prerequisite tasks
+are complete.
+
+---
+
 ## Target Directory Layout (After M2)
 
 ```
@@ -131,6 +151,7 @@ mai-ng/
 │   ├── contributing.md
 │   └── tasks/
 │       ├── overview.md             ← you are here
+│       ├── progress.md             # task completion tracker
 │       ├── m0-tasks.md
 │       ├── m1-tasks.md
 │       └── m2-tasks.md
