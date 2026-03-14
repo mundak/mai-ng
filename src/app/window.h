@@ -18,6 +18,7 @@ namespace mai::app
 
   private:
     GLFWwindow* m_window = nullptr;
+    bool m_glfw_initialised = false;
   };
 
 } // namespace mai::app

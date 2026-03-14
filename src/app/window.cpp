@@ -28,6 +28,7 @@ namespace mai::app
       spdlog::error("Failed to initialise GLFW");
       return false;
     }
+    m_glfw_initialised = true;
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -74,7 +75,11 @@ namespace mai::app
       glfwDestroyWindow(m_window);
       m_window = nullptr;
     }
-    glfwTerminate();
+    if (m_glfw_initialised)
+    {
+      glfwTerminate();
+      m_glfw_initialised = false;
+    }
     spdlog::info("Window shut down");
   }
 
