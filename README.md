@@ -6,8 +6,8 @@ Integrated editor, compiler and debugger for the **mai** programming language.
 
 ## Prerequisites
 
-* **C++20 compiler** — GCC 11+ or Clang 14+
-* **CMake 3.20+**
+* C++20 compiler (GCC 11+ / Clang 14+)
+* CMake 3.20+
 
 ## Getting Started
 
