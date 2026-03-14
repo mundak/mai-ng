@@ -50,4 +50,5 @@ TEST(TextBuffer, MutableAccess)
   buf.content() = "modified directly";
   EXPECT_EQ(buf.content(), "modified directly");
   EXPECT_EQ(buf.size(), 17);
+  EXPECT_FALSE(buf.is_modified());
 }
