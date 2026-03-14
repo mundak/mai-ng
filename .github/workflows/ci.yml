@@ -11,6 +11,18 @@ permissions:
   contents: read
 
 jobs:
+  format-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check clang-format
+        run: |
+          find src/ tests/ \( -name '*.cpp' -o -name '*.h' -o -name '*.inl' \) \
+            -exec clang-format --dry-run --Werror {} +
+
   build:
     runs-on: ubuntu-latest
 
