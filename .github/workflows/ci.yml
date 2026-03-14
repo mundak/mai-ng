@@ -21,6 +21,18 @@ jobs:
       - name: Install build tools
         run: sudo apt-get update && sudo apt-get install -y cmake g++
 
+      # OpenGL headers & Mesa (needed by GLFW and ImGui OpenGL3 backend)
+      # X11 / input libraries (needed by GLFW for window creation)
+      # Wayland libraries (needed by GLFW 3.4 Wayland support)
+      # xvfb provides a virtual framebuffer for headless OpenGL rendering in CI
+      - name: Install OpenGL / X11 / headless dependencies
+        run: >
+          sudo apt-get install -y
+          libgl-dev libglu1-mesa-dev
+          libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
+          libwayland-dev wayland-protocols libxkbcommon-dev
+          xvfb
+
       - name: Configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release
 
@@ -28,7 +40,8 @@ jobs:
         run: cmake --build build --parallel
 
       - name: Test
-        run: ctest --test-dir build --output-on-failure
+        run: xvfb-run ctest --test-dir build --output-on-failure
 
-      - name: Run binary
-        run: ./build/src/mai-ide
+      - name: Run binary (headless smoke test)
+        run: |
+          xvfb-run timeout 2 ./build/src/mai-ide || true

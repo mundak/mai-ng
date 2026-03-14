@@ -36,15 +36,15 @@ complete, fill in the PR link, and record the date.
 
 | Task | Title | Group | Status | PR | Date |
 |------|-------|-------|--------|----|------|
-| T1.1 | Add GLFW 3.4 via FetchContent | A | `pending` | | |
-| T1.2 | Add Dear ImGui (docking branch) via FetchContent | A | `pending` | | |
-| T1.3 | Update CI for OpenGL | A | `pending` | | |
-| T1.4 | Window creation | B | `pending` | | |
-| T1.5 | ImGui backend | B | `pending` | | |
-| T1.6 | Main render loop | C | `pending` | | |
-| T1.7 | Update main.cpp to launch window | C | `pending` | | |
-| T1.8 | Unit / integration tests | D | `pending` | | |
-| T1.9 | End-to-end verification | D | `pending` | | |
+| T1.1 | Add GLFW 3.4 via FetchContent | A | `done` | | 2026-03-14 |
+| T1.2 | Add Dear ImGui (docking branch) via FetchContent | A | `done` | | 2026-03-14 |
+| T1.3 | Update CI for OpenGL | A | `done` | | 2026-03-14 |
+| T1.4 | Window creation | B | `done` | | 2026-03-14 |
+| T1.5 | ImGui backend | B | `done` | | 2026-03-14 |
+| T1.6 | Main render loop | C | `done` | | 2026-03-14 |
+| T1.7 | Update main.cpp to launch window | C | `done` | | 2026-03-14 |
+| T1.8 | Unit / integration tests | D | `done` | | 2026-03-14 |
+| T1.9 | End-to-end verification | D | `done` | | 2026-03-14 |
 
 ## M2 — Dockable Panel Layout
 
