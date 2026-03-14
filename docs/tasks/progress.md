@@ -52,7 +52,7 @@ complete, fill in the PR link, and record the date.
 |------|-------|-------|--------|----|------|
 | T2.1 | Editor panel | A | `done` | | 2026-03-14 |
 | T2.2 | Assembly View panel | A | `done` | | 2026-03-14 |
-| T2.3 | Console / Output panel | A | `pending` | | |
+| T2.3 | Console / Output panel | A | `done` | | 2026-03-14 |
 | T2.4 | Debugger panel | A | `pending` | | |
 | T2.5 | Default dock layout | B | `pending` | | |
 | T2.6 | Wire panels into main loop | B | `pending` | | |
