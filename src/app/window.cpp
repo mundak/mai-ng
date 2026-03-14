@@ -3,23 +3,28 @@
 #include <GLFW/glfw3.h>
 #include <spdlog/spdlog.h>
 
-namespace mai::app
+namespace
 {
 
-  static void glfw_error_callback(int error, const char* description)
+  void glfw_error_callback(int error, const char* description)
   {
     spdlog::error("GLFW error {}: {}", error, description);
   }
 
-  static void key_callback(GLFWwindow* window, int key, int /*scancode*/, int action, int /*mods*/)
+  void key_callback(GLFWwindow* glfw_window, int key, int /*scancode*/, int action, int /*mods*/)
   {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
     {
-      glfwSetWindowShouldClose(window, GLFW_TRUE);
+      glfwSetWindowShouldClose(glfw_window, GLFW_TRUE);
     }
   }
 
-  bool Window::init(int width, int height, const char* title)
+}
+
+namespace mai::app
+{
+
+  bool window::init(int32_t width, int32_t height, const char* title)
   {
     glfwSetErrorCallback(glfw_error_callback);
 
@@ -53,22 +58,22 @@ namespace mai::app
     return true;
   }
 
-  bool Window::should_close() const
+  bool window::should_close() const
   {
     return glfwWindowShouldClose(m_window) != 0;
   }
 
-  void Window::poll_events()
+  void window::poll_events()
   {
     glfwPollEvents();
   }
 
-  void Window::swap_buffers()
+  void window::swap_buffers()
   {
     glfwSwapBuffers(m_window);
   }
 
-  void Window::shutdown()
+  void window::shutdown()
   {
     if (m_window)
     {
@@ -83,4 +88,9 @@ namespace mai::app
     spdlog::info("Window shut down");
   }
 
-} // namespace mai::app
+  GLFWwindow* window::handle() const
+  {
+    return m_window;
+  }
+
+}

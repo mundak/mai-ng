@@ -9,21 +9,21 @@
 namespace mai::app
 {
 
-  void run(Window& window, ImGuiBackend& imgui_backend)
+  void run(window& win, imgui_backend& backend)
   {
-    while (!window.should_close())
+    while (!win.should_close())
     {
-      window.poll_events();
-      imgui_backend.new_frame();
+      win.poll_events();
+      backend.new_frame();
 
       ImGui::ShowDemoWindow();
 
       glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT);
 
-      imgui_backend.render();
-      window.swap_buffers();
+      backend.render();
+      win.swap_buffers();
     }
   }
 
-} // namespace mai::app
+}

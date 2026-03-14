@@ -3,9 +3,9 @@
 namespace mai::app
 {
 
-  class Window;
-  class ImGuiBackend;
+  class window;
+  class imgui_backend;
 
-  void run(Window& window, ImGuiBackend& imgui_backend);
+  void run(window& win, imgui_backend& backend);
 
-} // namespace mai::app
+}

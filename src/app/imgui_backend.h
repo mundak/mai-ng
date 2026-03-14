@@ -5,13 +5,13 @@ struct GLFWwindow;
 namespace mai::app
 {
 
-  class ImGuiBackend
+  class imgui_backend
   {
   public:
-    void init(GLFWwindow* window);
+    void init(GLFWwindow* glfw_window);
     void new_frame();
     void render();
     void shutdown();
   };
 
-} // namespace mai::app
+}

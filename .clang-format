@@ -37,6 +37,17 @@ ConstructorInitializerIndentWidth: 2
 ContinuationIndentWidth: 2
 FixNamespaceComments: false
 IncludeBlocks: Regroup
+IncludeCategories:
+  # 1. Project headers (quoted includes) — highest priority after main header
+  - Regex: '^"'
+    Priority: 1
+  # 2. Third-party headers (imgui, GLFW, spdlog, fmt, gtest, gmock)
+  - Regex: '^<(imgui|GLFW|backends|spdlog|fmt|gtest|gmock).*>'
+    Priority: 2
+  # 3. Standard library headers (everything else in angle brackets)
+  - Regex: '^<'
+    Priority: 3
+IncludeIsMainRegex: '([-_](test|unittest))?$'
 IndentPPDirectives: None
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: All

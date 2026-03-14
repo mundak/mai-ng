@@ -91,11 +91,19 @@ All agents must follow the conventions in the [Contributing Guide](../contributi
 Key rules:
 
 * C++20, `-Wall -Wextra -Wpedantic`
-* `snake_case` for files and directories, `PascalCase` for types, `snake_case`
-  for functions/variables.
+* `snake_case` for **all identifiers** — files, directories, classes, structs,
+  functions, variables, namespaces. See the naming table in `contributing.md`.
+* Member variables use the `m_` prefix; constants use `UPPER_SNAKE_CASE`.
 * GoogleTest for all unit tests. Each test executable is registered via
   `gtest_discover_tests()`.
 * Every PR must leave `cmake --build build && ctest --test-dir build` green.
+
+> **⚠️ Coding-style compliance is mandatory.** Before writing any code, read
+> `docs/contributing.md` in full. Every source file must conform to the style
+> rules defined there — including naming conventions, brace placement, include
+> ordering, type usage (`int32_t` over `int`), anonymous namespaces (not
+> `static`), no namespace closing comments, and all other rules. Run
+> `clang-format -i` on every modified file before committing.
 
 ---
 

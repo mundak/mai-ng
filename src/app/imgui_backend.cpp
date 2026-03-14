@@ -5,12 +5,17 @@
 #include <imgui_impl_opengl3.h>
 #include <spdlog/spdlog.h>
 
+namespace
+{
+
+  constexpr const char* GLSL_VERSION = "#version 330";
+
+}
+
 namespace mai::app
 {
 
-  static constexpr const char* kGlslVersion = "#version 330";
-
-  void ImGuiBackend::init(GLFWwindow* window)
+  void imgui_backend::init(GLFWwindow* glfw_window)
   {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -20,28 +25,28 @@ namespace mai::app
 
     ImGui::StyleColorsDark();
 
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init(kGlslVersion);
+    ImGui_ImplGlfw_InitForOpenGL(glfw_window, true);
+    ImGui_ImplOpenGL3_Init(GLSL_VERSION);
 
     io.Fonts->AddFontDefault();
 
-    spdlog::info("ImGui backend initialised (docking enabled, GLSL {})", kGlslVersion);
+    spdlog::info("ImGui backend initialised (docking enabled, GLSL {})", GLSL_VERSION);
   }
 
-  void ImGuiBackend::new_frame()
+  void imgui_backend::new_frame()
   {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
   }
 
-  void ImGuiBackend::render()
+  void imgui_backend::render()
   {
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
   }
 
-  void ImGuiBackend::shutdown()
+  void imgui_backend::shutdown()
   {
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
@@ -49,4 +54,4 @@ namespace mai::app
     spdlog::info("ImGui backend shut down");
   }
 
-} // namespace mai::app
+}

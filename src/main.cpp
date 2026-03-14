@@ -2,25 +2,26 @@
 #include "app/main_loop.h"
 #include "app/window.h"
 
-#include <cstdlib>
 #include <spdlog/spdlog.h>
+
+#include <cstdlib>
 
 int main()
 {
-  mai::app::Window window;
-  mai::app::ImGuiBackend imgui_backend;
+  mai::app::window win;
+  mai::app::imgui_backend backend;
 
-  if (!window.init(1280, 720, "Mai IDE"))
+  if (!win.init(1280, 720, "Mai IDE"))
   {
     spdlog::error("Failed to initialise window — exiting");
     return EXIT_FAILURE;
   }
 
-  imgui_backend.init(window.handle());
-  mai::app::run(window, imgui_backend);
+  backend.init(win.handle());
+  mai::app::run(win, backend);
 
-  imgui_backend.shutdown();
-  window.shutdown();
+  backend.shutdown();
+  win.shutdown();
 
   return EXIT_SUCCESS;
 }
