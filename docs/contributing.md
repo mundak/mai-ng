@@ -410,8 +410,11 @@ AI agents picking up tasks should:
 9. **Update `docs/tasks/progress.md`** — mark the task as `done` and add the
    completion date. Commit this change with the task deliverables.
 10. Commit with a descriptive message referencing the task ID.
-11. Open a PR targeting the milestone integration branch.
-12. **Add the PR number** to your row in `docs/tasks/progress.md` and push
+11. **Pull latest changes** from the target branch and resolve any merge
+    conflicts. Re-run the full build and test suite to confirm nothing is
+    broken after the merge.
+12. Open a PR targeting the milestone integration branch.
+13. **Add the PR number** to your row in `docs/tasks/progress.md` and push
     the update.
 
 ---
