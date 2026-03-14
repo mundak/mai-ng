@@ -58,3 +58,13 @@ complete, fill in the PR link, and record the date.
 | T2.6 | Wire panels into main loop | B | `pending` | | |
 | T2.7 | Tests for panels & layout | C | `pending` | | |
 | T2.8 | End-to-end verification | C | `pending` | | |
+
+## M3 — Text Input in Editor Panel
+
+| Task | Title | Group | Status | PR | Date |
+|------|-------|-------|--------|----|------|
+| T3.1 | Text buffer class | A | `pending` | | |
+| T3.2 | Add imgui_stdlib to the build | A | `pending` | | |
+| T3.3 | Integrate multi-line text input into editor panel | B | `pending` | | |
+| T3.4 | Unit tests for M3 | C | `pending` | | |
+| T3.5 | End-to-end verification | C | `pending` | | |

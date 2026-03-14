@@ -1,6 +1,6 @@
 # Task Lists — Overview
 
-This directory contains **granular, agent-ready task lists** for the first three
+This directory contains **granular, agent-ready task lists** for the first four
 milestones of the Mai IDE project. Each task is designed to be picked up by an
 independent AI coding agent (or human contributor) and completed in isolation.
 
@@ -18,13 +18,14 @@ independent AI coding agent (or human contributor) and completed in isolation.
 | [m0-tasks.md](m0-tasks.md) | M0 — Project Skeleton & CI | CMake, main.cpp, GoogleTest, GitHub Actions |
 | [m1-tasks.md](m1-tasks.md) | M1 — Empty Window on Screen | GLFW, Dear ImGui, OpenGL, render loop |
 | [m2-tasks.md](m2-tasks.md) | M2 — Dockable Panel Layout | Four panels, DockBuilder, default layout |
+| [m3-tasks.md](m3-tasks.md) | M3 — Text Input in Editor Panel | Text buffer, InputTextMultiline, clipboard |
 
 ---
 
 ## Milestone Dependency Chain
 
 ```
-M0 ──► M1 ──► M2
+M0 ──► M1 ──► M2 ──► M3
 ```
 
 Each milestone must be **fully complete** (CI green) before the next one
@@ -73,6 +74,9 @@ M1  Group A ──► Group B ──► Group C ──► Group D
 
 M2  Group A ──────────────► Group B ──► Group C
     (T2.1–T2.4)              (T2.5–T2.6) (T2.7–T2.8)
+
+M3  Group A ──► Group B ──► Group C
+    (T3.1–T3.2)  (T3.3)     (T3.4–T3.5)
 ```
 
 **Maximum concurrency per milestone:**
@@ -82,6 +86,7 @@ M2  Group A ──────────────► Group B ──► Grou
 | M0 | 5 (group A) |
 | M1 | 3 (group A) |
 | M2 | 4 (group A) |
+| M3 | 2 (group A) |
 
 ---
 
@@ -126,7 +131,7 @@ are complete.
 
 ---
 
-## Target Directory Layout (After M2)
+## Target Directory Layout (After M3)
 
 ```
 mai-ng/
@@ -139,8 +144,10 @@ mai-ng/
 │   │   ├── imgui_backend.h / .cpp  # Dear ImGui init (M1)
 │   │   ├── main_loop.h / .cpp      # render loop (M1)
 │   │   └── layout.h / .cpp         # dock layout (M2)
+│   ├── editor/
+│   │   └── text_buffer.h / .cpp    # source-text data model (M3)
 │   └── panels/
-│       ├── editor_panel.h / .cpp   # (M2)
+│       ├── editor_panel.h / .cpp   # text input widget (M2 → M3)
 │       ├── assembly_panel.h / .cpp # (M2)
 │       ├── console_panel.h / .cpp  # (M2)
 │       └── debugger_panel.h / .cpp # (M2)
@@ -148,7 +155,8 @@ mai-ng/
 │   ├── CMakeLists.txt              # test targets
 │   ├── test_main.cpp               # smoke test (M0)
 │   ├── test_window.cpp             # (M1)
-│   └── test_panels.cpp             # (M2)
+│   ├── test_panels.cpp             # (M2)
+│   └── test_text_buffer.cpp        # (M3)
 ├── third_party/                    # vendored or FetchContent deps
 ├── .github/
 │   ├── workflows/ci.yml            # CI pipeline
@@ -163,7 +171,8 @@ mai-ng/
 │       ├── progress.md             # task completion tracker
 │       ├── m0-tasks.md
 │       ├── m1-tasks.md
-│       └── m2-tasks.md
+│       ├── m2-tasks.md
+│       └── m3-tasks.md
 ├── .gitignore
 └── README.md
 ```
