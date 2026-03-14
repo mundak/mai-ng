@@ -14,9 +14,9 @@ complete, fill in the PR link, and record the date.
 
 1. Find your task row in the table below.
 2. Change **Status** from `pending` to `done`.
-3. Add your **PR** number (e.g. `#12`).
-4. Add the **Date** in `YYYY-MM-DD` format.
-5. Commit the change in the same PR that delivers the task.
+3. Add the **Date** in `YYYY-MM-DD` format.
+4. Commit the change in the same PR that delivers the task.
+5. After opening the PR, add the **PR** number (e.g. `#12`) and push the update.
 
 ---
 

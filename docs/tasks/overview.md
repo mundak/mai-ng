@@ -56,8 +56,9 @@ An agent should:
 3. Implement the deliverables.
 4. Write the suggested tests (at minimum).
 5. Ensure the full project builds and all tests pass (`cmake -B build && cmake --build build && ctest --test-dir build`).
-6. **Update [progress.md](progress.md)** — mark the task as `done`, add the PR number and date (see [Progress Tracking](#progress-tracking) below).
+6. **Update [progress.md](progress.md)** — mark the task as `done` and add the completion date. Commit this change with the task deliverables.
 7. Open a PR referencing the task ID (e.g. `T0.1`).
+8. **Add the PR number** to your row in `progress.md` and push the update.
 
 ---
 
@@ -107,9 +108,9 @@ part of the same PR that delivers the task:
 1. Open `docs/tasks/progress.md`.
 2. Find the row for the completed task.
 3. Change the **Status** column from `pending` to `done`.
-4. Enter the **PR** number (e.g. `#12`).
-5. Enter the **Date** in `YYYY-MM-DD` format.
-6. Commit the change together with the task deliverables.
+4. Enter the **Date** in `YYYY-MM-DD` format.
+5. Commit the change together with the task deliverables.
+6. After opening the PR, add the **PR** number (e.g. `#12`) and push the update.
 
 This keeps a single source of truth that any agent or human can check before
 starting a new task — especially useful for verifying that prerequisite tasks
