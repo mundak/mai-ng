@@ -29,8 +29,8 @@ complete, fill in the PR link, and record the date.
 | T0.3 | .gitignore | A | `done` | | 2026-03-14 |
 | T0.4 | Test infrastructure (GoogleTest + smoke test) | A | `done` | | 2026-03-14 |
 | T0.5 | GitHub Actions CI workflow | A | `done` | | 2026-03-14 |
-| T0.6 | Update README.md | B | `pending` | | |
-| T0.7 | End-to-end verification | C | `pending` | | |
+| T0.6 | Update README.md | B | `done` | | 2026-03-14 |
+| T0.7 | End-to-end verification | C | `done` | | 2026-03-14 |
 
 ## M1 — Empty Window on Screen
 
