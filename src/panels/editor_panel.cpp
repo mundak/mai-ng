@@ -2,14 +2,9 @@
 
 #include <imgui.h>
 
-namespace mai::panels
+void editor_panel::render()
 {
-
-  void editor_panel::render()
-  {
-    ImGui::Begin("Editor");
-    ImGui::TextUnformatted("Editor panel \u2014 M3 will add text input here.");
-    ImGui::End();
-  }
-
+  ImGui::Begin("Editor");
+  ImGui::TextUnformatted("Editor panel \u2014 M3 will add text input here.");
+  ImGui::End();
 }
