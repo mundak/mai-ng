@@ -1,0 +1,124 @@
+---
+name: Self-Healing
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+permissions:
+  contents: read
+  issues: write
+  actions: read
+
+jobs:
+  create-fix-issue:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.workflow_run.conclusion == 'failure'
+      && github.event.workflow_run.event == 'pull_request'
+
+    steps:
+      - name: Collect failure details and open issue for Copilot
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const run = context.payload.workflow_run;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            // --- gather failed-job information --------------------------------
+            const { data: jobsData } = await github.rest.actions.listJobsForWorkflowRun({
+              owner,
+              repo,
+              run_id: run.id,
+            });
+
+            const failedJobs = jobsData.jobs.filter(j => j.conclusion === 'failure');
+            if (failedJobs.length === 0) {
+              console.log('No failed jobs found – nothing to do.');
+              return;
+            }
+
+            let details = '';
+            for (const job of failedJobs) {
+              details += `### Job: \`${job.name}\`\n`;
+
+              const failedSteps = (job.steps || []).filter(s => s.conclusion === 'failure');
+              if (failedSteps.length > 0) {
+                details += '**Failed steps:**\n';
+                for (const step of failedSteps) {
+                  details += `- ${step.name}\n`;
+                }
+              }
+
+              // Download the log and keep only the last 80 lines.
+              try {
+                const { data: log } = await github.rest.actions.downloadJobLogsForWorkflowRun({
+                  owner,
+                  repo,
+                  job_id: job.id,
+                });
+                const tail = log.split('\n').slice(-80).join('\n');
+                details += `\n**Log (last 80 lines):**\n\`\`\`\n${tail}\n\`\`\`\n\n`;
+              } catch (e) {
+                details += `\n_Could not retrieve logs: ${e.message}_\n\n`;
+              }
+            }
+
+            // --- avoid duplicate issues ---------------------------------------
+            const titlePrefix = `[Self-Healing] CI failure on \`${run.head_branch}\``;
+            const { data: existingIssues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: 'open',
+              labels: 'self-healing',
+              per_page: 100,
+            });
+            const duplicate = existingIssues.find(i => i.title.startsWith(titlePrefix));
+            if (duplicate) {
+              console.log(`Open issue #${duplicate.number} already covers this branch – skipping.`);
+              return;
+            }
+
+            // --- create the issue ---------------------------------------------
+            const title = `${titlePrefix} – ${failedJobs.map(j => j.name).join(', ')}`;
+            const body = [
+              '## CI Failure Details\n',
+              `| Field    | Value |`,
+              `|----------|-------|`,
+              `| Workflow | ${run.name} |`,
+              `| Branch   | \`${run.head_branch}\` |`,
+              `| Commit   | \`${run.head_sha}\` |`,
+              `| Run      | ${run.html_url} |`,
+              '',
+              details,
+              '---',
+              '',
+              'Copilot, please analyze the CI failure above and create a fix.',
+            ].join('\n');
+
+            // Ensure the label exists (create it if not).
+            try {
+              await github.rest.issues.getLabel({ owner, repo, name: 'self-healing' });
+            } catch {
+              await github.rest.issues.createLabel({
+                owner,
+                repo,
+                name: 'self-healing',
+                color: 'D93F0B',
+                description: 'Automatically created by the self-healing workflow',
+              });
+            }
+
+            await github.rest.issues.create({
+              owner,
+              repo,
+              title,
+              body,
+              labels: ['self-healing'],
+              assignees: ['copilot'],
+            });
+
+            console.log('Self-healing issue created successfully.');
