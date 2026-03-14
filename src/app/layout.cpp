@@ -10,7 +10,7 @@ namespace mai::app
   void setup_default_layout(ImGuiID dockspace_id)
   {
     ImGuiDockNode* node = ImGui::DockBuilderGetNode(dockspace_id);
-    if (node != nullptr && node->ChildNodes[0] != nullptr)
+    if (node != nullptr && node->IsSplitNode())
     {
       return;
     }
