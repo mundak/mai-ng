@@ -397,8 +397,12 @@ AI agents picking up tasks should:
 5. Write (or update) the suggested tests.
 6. Run `cmake -B build && cmake --build build && ctest --test-dir build`
    locally.
-7. Commit with a descriptive message referencing the task ID.
-8. Open a PR targeting the milestone integration branch.
+7. **Update `docs/tasks/progress.md`** — mark the task as `done` and add the
+   completion date. Commit this change with the task deliverables.
+8. Commit with a descriptive message referencing the task ID.
+9. Open a PR targeting the milestone integration branch.
+10. **Add the PR number** to your row in `docs/tasks/progress.md` and push
+    the update.
 
 ---
 
