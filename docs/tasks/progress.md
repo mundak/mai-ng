@@ -63,7 +63,7 @@ complete, fill in the PR link, and record the date.
 
 | Task | Title | Group | Status | PR | Date |
 |------|-------|-------|--------|----|------|
-| T3.1 | Text buffer class | A | `pending` | | |
+| T3.1 | Text buffer class | A | `done` | | 2026-03-14 |
 | T3.2 | Add imgui_stdlib to the build | A | `pending` | | |
 | T3.3 | Integrate multi-line text input into editor panel | B | `pending` | | |
 | T3.4 | Unit tests for M3 | C | `pending` | | |
